@@ -5,9 +5,6 @@ class STextFormField extends StatelessWidget {
   final IconData? icon;
   final TextEditingController? controller;
   
-  
-  
-
   const STextFormField({super.key,  
   this.hintText = "hintext",
   this.icon,
@@ -15,11 +12,10 @@ class STextFormField extends StatelessWidget {
   
 });
  
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 13,vertical: 5),
       child: TextFormField(
         controller: controller,
         decoration: InputDecoration(
