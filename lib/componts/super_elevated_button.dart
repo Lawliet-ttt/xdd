@@ -4,16 +4,16 @@ class SElevatedButton extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isSelected;
   final bool isSelectable;
-  final Color selectedColor;
-  final Color defaultColor;
+  final Color? selectedColor;
+  final Color? defaultColor;
 
   const SElevatedButton({super.key,
   this.text = "Text",
   required this.onPressed,
   this.isSelected = false,
   this.isSelectable = false,
-  this.selectedColor = const Color(0xFF1E3A8A),
-  this.defaultColor = const Color(0xFF2A4365),
+  this.selectedColor,
+  this.defaultColor,
 
 
   

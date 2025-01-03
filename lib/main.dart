@@ -1,5 +1,6 @@
 import 'package:app/pages/login.dart';
-import 'package:app/providers/field_providers.dart';
+import 'package:app/providers/controllers_providers.dart';
+import 'package:app/providers/validators_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => FieldProviders(),)
+      providers: [
+        ChangeNotifierProvider(create: (context) => ValidatorsProviders()),
+        ChangeNotifierProvider(create: (context)=> ControllersProviders())
       ],
       child: MaterialApp(
       debugShowCheckedModeBanner: false,

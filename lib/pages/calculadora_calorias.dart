@@ -2,27 +2,36 @@ import 'package:app/componts/edit_elevated_button.dart';
 import 'package:app/componts/mi_drawer.dart';
 import 'package:app/componts/super_elevated_button.dart';
 import 'package:app/componts/super_text_form_field.dart';
-import 'package:app/providers/field_providers.dart';
+import 'package:app/providers/controllers_providers.dart';
+import 'package:app/providers/validators_providers.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 class PantallaCalculadoraCalorias extends StatefulWidget {
   const PantallaCalculadoraCalorias({super.key});
-
   @override
   State<PantallaCalculadoraCalorias> createState() => _PantallaCalculadoraCaloriasState();
 }
 
 class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCalorias> {
   String seleccionarGenero = "";
-  final edad = TextEditingController();
-  final peso = TextEditingController();
-  final altura = TextEditingController();
-  final actividad = TextEditingController();
-
-  final provider = FieldProviders();
+  final edadController = TextEditingController();
+  final pesoController = TextEditingController();
+  final alturaController = TextEditingController();
+  final actividadController = TextEditingController();
+  final providerValidator = ValidatorsProviders();
   final formkey = GlobalKey<FormState>();
+
   @override 
-  
+
   Widget build(BuildContext context) {
+    
+    final providerController = Provider.of<ControllersProviders>(context);
+    edadController.text = providerController.edad;
+    pesoController.text = providerController.peso;
+    alturaController.text = providerController.altura;
+    actividadController.text = providerController.actividad;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Calorias"),
@@ -59,31 +68,35 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
             const SizedBox(height: 13),
             STextFormField(
               hintText: "Edad",
-              controller: edad,
-              validator: (value)=>provider.edadvalidator(value, "Valide su edad")
+              controller: edadController,
+              validator: (value)=>providerValidator.edadvalidator(value, "Valide su edad"),
+              onSaved: (value) => providerController.updateEdad(value ?? ''),
+              
             ),
             STextFormField(
               hintText: "Peso",
-              controller: peso,
-              validator: (value) => provider.pesovalidator(value, "valide su peso"),
+              controller: pesoController,
+              validator: (value) => providerValidator.pesovalidator(value, "valide su peso"),
+              onSaved: (value) => providerController.updatepeso(value ?? ''),
             ),
             STextFormField(
               hintText: "Altura",
-              controller: altura,
-              validator: (value) => provider.alturavalidator(value,"Ingrese su altura"),
+              controller: alturaController,
+              validator: (value) => providerValidator.alturavalidator(value,"Ingrese su altura"),
+              onSaved: (value) => providerController.updatealtura(value ?? '')
             ),
             STextFormField(
               hintText: 'Nivel de actvidad',
-              controller: actividad,
-              validator: (value) => provider.actividadvalidator(value, "valide su actividad"),
+              controller: actividadController,
+              validator: (value) => providerValidator.actividadvalidator(value, "valide su actividad"),
+              onSaved: (value) => providerController.updateactividad(value ?? '')
             ),
             SElevatedButton(
               text: "Datos",
               onPressed: (){
                 if (formkey.currentState!.validate()){
-
-            }else{
-              
+                  //providers.updateEdad(edadC  ontroller.text);
+                  formkey.currentState?.save();
             }
               },
             )
