@@ -27,7 +27,7 @@ class ControllersProviders extends ChangeNotifier{
     notifyListeners();
   }
   void updateactividad(String value){
-    _actividad = value;
+    _actividad = value; 
     notifyListeners();
   }
   void updatecuello(String value){
@@ -39,4 +39,15 @@ class ControllersProviders extends ChangeNotifier{
     notifyListeners();
   }
 
+  int calcularCalorias(){
+    double peso = double.tryParse(_peso) ?? 0;
+    double edad = double.tryParse(_edad) ?? 0;
+    double altura = double.tryParse(_altura) ?? 0;
+    //double actividad = double.tryParse(_actividad) ?? 0;
+    
+    double calorias = ( (10 * peso) + (6.25 * altura) - (5 * edad) + 5) * 1.55;
+    int calor  = calorias.round();
+
+    return calor;
+  }
 }

@@ -1,4 +1,3 @@
-import 'package:app/componts/edit_elevated_button.dart';
 import 'package:app/componts/mi_drawer.dart';
 import 'package:app/componts/super_elevated_button.dart';
 import 'package:app/componts/super_text_form_field.dart';
@@ -27,11 +26,18 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
   Widget build(BuildContext context) {
     
     final providerController = Provider.of<ControllersProviders>(context);
+
+    double ancho = MediaQuery.of(context).size.width;
+    double alto = MediaQuery.of(context).size.height;
+    
     edadController.text = providerController.edad;
     pesoController.text = providerController.peso;
     alturaController.text = providerController.altura;
     actividadController.text = providerController.actividad;
 
+    int calorias = 0;
+  
+   
     return Scaffold(
       appBar: AppBar(
         title: const Text("Calorias"),
@@ -47,20 +53,30 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  EElevatedButton(
+                  SElevatedButton(
                     text: "Hombre",
-                    isSelected: true,
-                    isSelectable: seleccionarGenero == "Hombre",
-                    onPressed: (){
-                    seleccionarGenero = "Hombre"; 
-                  }
-                  ),
-                  EElevatedButton(
-                    text: "Mujer",
+                    widthFactor:ancho * 0.43 ,
+                    widthHeight: alto * 0.08,
+                  
+                    /*
                     isSelected: true,
                     isSelectable: seleccionarGenero == "Mujer",
+                    */
                     onPressed: (){
-                    seleccionarGenero = "Mujer";
+                    //seleccionarGenero = "Mujer";
+                  }
+                  ),
+                  SElevatedButton(
+                    text: "Mujer",
+                    widthFactor:ancho * 0.43 ,
+                    widthHeight: alto * 0.08,
+                  
+                    /*
+                    isSelected: true,
+                    isSelectable: seleccionarGenero == "Mujer",
+                    */
+                    onPressed: (){
+                    //seleccionarGenero = "Mujer";
                   }
                   ),
                 ],
@@ -97,9 +113,25 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
                 if (formkey.currentState!.validate()){
                   //providers.updateEdad(edadC  ontroller.text);
                   formkey.currentState?.save();
+
+            setState(() {
+              calorias = providerController.calcularCalorias();
+            });
             }
+            
               },
+              
+            ),
+            Column(
+              children: [
+                if(calorias > 800 && calorias < 10000)
+                 Text("Las calorias son $calorias"),
+            
+              ],
             )
+            
+            
+            
             ],
             ),
           ),

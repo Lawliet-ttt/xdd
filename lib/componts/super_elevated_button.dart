@@ -2,35 +2,27 @@ import 'package:flutter/material.dart';
 class SElevatedButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
-  final bool isSelected;
-  final bool isSelectable;
-  final Color? selectedColor;
-  final Color? defaultColor;
+  final double? widthFactor;
+  final double? widthHeight;
 
   const SElevatedButton({super.key,
   this.text = "Text",
   required this.onPressed,
-  this.isSelected = false,
-  this.isSelectable = false,
-  this.selectedColor,
-  this.defaultColor,
-
-
+  this.widthFactor,
+  this.widthHeight
   
   });
 
   @override
   Widget build(BuildContext context) {
-    double ancho = MediaQuery.of(context).size.width;
-    double alto = MediaQuery.of(context).size.height;
+    
+    double buttonWidth  = widthFactor != null ?  widthFactor! : 120;
+    double buttonHeight  = widthFactor != null ? widthHeight! : 50;
     return  Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 11,vertical: 13),
+      padding: const EdgeInsets.symmetric(horizontal: 15 , vertical: 13),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: isSelectable && isSelected
-          ? selectedColor 
-          : defaultColor,
-          minimumSize: Size(ancho*0.33, alto*0.08),
+          minimumSize: Size(buttonWidth,buttonHeight),
           shape:RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5)
           ) 
@@ -38,7 +30,7 @@ class SElevatedButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(text,
         style: TextStyle(
-          color: Colors.white
+          color: Colors.black
         )
         ),
       ),

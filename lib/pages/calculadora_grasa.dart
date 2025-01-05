@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:app/providers/validators_providers.dart';
 import 'package:provider/provider.dart';
 
-
 class PantallaCalculadoraGrasa extends StatefulWidget {
   const PantallaCalculadoraGrasa({super.key});
 
@@ -18,23 +17,22 @@ class PantallaCalculadoraGrasa extends StatefulWidget {
 class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
   String seleccionarGenero = "";
   
-
   final edadController = TextEditingController();
   final pesoController = TextEditingController();
   final alturaController = TextEditingController();
   final actividadController = TextEditingController();
   final cuelloController = TextEditingController();
 
-
   final formKeys = GlobalKey<FormState>();
   final providerValidator = ValidatorsProviders();
-  @override
    
   @override
   Widget build(BuildContext context) {
     double ancho = MediaQuery.of(context).size.width;
     double alto = MediaQuery.of(context).size.height;
+
     final providerController = Provider.of<ControllersProviders>(context);
+    
     edadController.text = providerController.edad;
     pesoController.text = providerController.peso;
     alturaController.text = providerController.altura;
@@ -139,24 +137,10 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
               if(formKeys.currentState!.validate()){
                 formKeys.currentState?.save();
               }
-            }),
-              const SizedBox(height: 15),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF2A4365),
-                      minimumSize: Size(ancho * 0.9, alto * 0.08),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5))),
-                  onPressed: () {},
-                  child:  Text(
-                    "text",
-                    style: TextStyle(color: Colors.white),
-                  )
-                  ),
-              const SizedBox(height: 15),
+            }
+            ),
             ],
             ),
- 
           ),
         ),
       ),
