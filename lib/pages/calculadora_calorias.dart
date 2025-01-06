@@ -21,6 +21,9 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
   final providerValidator = ValidatorsProviders();
   final formkey = GlobalKey<FormState>();
 
+  int calorias = 0;
+  int caloriasdef = 0;
+   
   @override 
 
   Widget build(BuildContext context) {
@@ -34,10 +37,7 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
     pesoController.text = providerController.peso;
     alturaController.text = providerController.altura;
     actividadController.text = providerController.actividad;
-
-    int calorias = 0;
-  
-   
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text("Calorias"),
@@ -57,7 +57,6 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
                     text: "Hombre",
                     widthFactor:ancho * 0.43 ,
                     widthHeight: alto * 0.08,
-                  
                     /*
                     isSelected: true,
                     isSelectable: seleccionarGenero == "Mujer",
@@ -93,7 +92,7 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
               hintText: "Peso",
               controller: pesoController,
               validator: (value) => providerValidator.pesovalidator(value, "valide su peso"),
-              onSaved: (value) => providerController.updatepeso(value ?? ''),
+              onSaved: (value) => providerController.updatepeso(value?? ''),
             ),
             STextFormField(
               hintText: "Altura",
@@ -107,30 +106,31 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
               validator: (value) => providerValidator.actividadvalidator(value, "valide su actividad"),
               onSaved: (value) => providerController.updateactividad(value ?? '')
             ),
+            
             SElevatedButton(
-              text: "Datos",
+              text: "Calcular",
               onPressed: (){
                 if (formkey.currentState!.validate()){
-                  //providers.updateEdad(edadC  ontroller.text);
                   formkey.currentState?.save();
-
-            setState(() {
-              calorias = providerController.calcularCalorias();
+                  setState(() {
+                  calorias = providerController.calcularCalorias();
+                  caloriasdef = calorias - 300;
             });
-            }
+            }           
+              }
+              ),
             
-              },
-              
-            ),
-            Column(
-              children: [
-                if(calorias > 800 && calorias < 10000)
-                 Text("Las calorias son $calorias"),
-            
-              ],
-            )
-            
-            
+            if (calorias < 5000 && calorias > 500  )
+                Text(
+                  "Las calorías calculadas son: $calorias\n"
+                  "Deficit son: $caloriasdef\n" ,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
             
             ],
             ),

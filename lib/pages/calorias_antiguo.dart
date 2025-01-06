@@ -1,3 +1,4 @@
+import 'package:app/componts/mi_drawer.dart';
 import 'package:flutter/material.dart';
 
 class PantallaCalculadoraGrasaxd extends StatefulWidget {
@@ -90,6 +91,10 @@ class _PantallaCalculadoraGrasaxd extends State<PantallaCalculadoraGrasaxd> {
     double alto = MediaQuery.of(context).size.height;
 
     return   Scaffold(
+      appBar: AppBar(
+        title: Text("Antiguo"),
+      ),
+      drawer: MiDrawer(),
         body: SingleChildScrollView(
           child : Center(
             child: Column(

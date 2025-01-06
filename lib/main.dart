@@ -1,5 +1,4 @@
 import 'package:app/pages/login.dart';
-import 'package:app/providers/calorias.providers.dart';
 import 'package:app/providers/controllers_providers.dart';
 import 'package:app/providers/validators_providers.dart';
 import 'package:flutter/material.dart';

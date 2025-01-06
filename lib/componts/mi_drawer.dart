@@ -1,5 +1,6 @@
 import 'package:app/pages/calculadora_calorias.dart';
 import 'package:app/pages/calculadora_grasa.dart';
+import 'package:app/pages/calorias_antiguo.dart';
 import 'package:app/pages/login.dart';
 import 'package:flutter/material.dart';
 class MiDrawer extends StatelessWidget {
@@ -46,6 +47,17 @@ class MiDrawer extends StatelessWidget {
                   );
             },
           ),
+          ListTile(
+            leading: Icon(Icons.calculate_sharp),
+            title: Text("Calculadora Antigua"),
+            onTap: (){
+              Navigator.push(
+                context, MaterialPageRoute(
+                  builder: (context)=>PantallaCalculadoraGrasaxd()
+                  )
+                  );
+            },
+          )
         ],
       ),
     );

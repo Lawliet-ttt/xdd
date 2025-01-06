@@ -6,13 +6,15 @@ class STextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final FormFieldValidator? validator;
   final FormFieldSetter<String>? onSaved;
+  //final Function(String)? onChanged;
   
   const STextFormField({super.key,  
   this.hintText = "hintext",
   this.icon,
   this.controller,
   this.validator,
-  this.onSaved
+  this.onSaved,
+  //this.onChanged,
   
 });
  
@@ -24,6 +26,7 @@ class STextFormField extends StatelessWidget {
         controller: controller,
         validator: validator,
         onSaved: onSaved,
+        //onChanged: onChanged,
         decoration: InputDecoration(
           hintText: hintText,
           label: Text('Ingresa tu $hintText'),
