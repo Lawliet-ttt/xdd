@@ -1,6 +1,6 @@
 import 'package:app/componts/mi_drawer.dart';
-import 'package:app/componts/super_elevated_button.dart';
-import 'package:app/componts/super_text_form_field.dart';
+import 'package:app/componts/super_elevatedbuttonn.dart';
+import 'package:app/componts/super_textformfieldd.dart';
 import 'package:app/providers/controllers_providers.dart';
 import 'package:app/providers/validators_providers.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +30,8 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
     
     final providerController = Provider.of<ControllersProviders>(context);
 
-    double ancho = MediaQuery.of(context).size.width;
-    double alto = MediaQuery.of(context).size.height;
+    //double ancho = MediaQuery.of(context).size.width;
+    //double alto = MediaQuery.of(context).size.height;
     
     edadController.text = providerController.edad;
     pesoController.text = providerController.peso;
@@ -49,14 +49,14 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
           child: Center(
             child: Column(
               children: [
-              const SizedBox(height: 25),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SElevatedButton(
                     text: "Hombre",
-                    widthFactor:ancho * 0.43 ,
-                    widthHeight: alto * 0.08,
+                    //widthFactor:ancho * 0.43 ,
+                    //widthHeight: alto * 0.08,
                     /*
                     isSelected: true,
                     isSelectable: seleccionarGenero == "Mujer",
@@ -67,8 +67,8 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
                   ),
                   SElevatedButton(
                     text: "Mujer",
-                    widthFactor:ancho * 0.43 ,
-                    widthHeight: alto * 0.08,
+                    //widthFactor:ancho * 0.43 ,
+                    //widthHeight: alto * 0.08,
                   
                     /*
                     isSelected: true,
@@ -80,7 +80,6 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
                   ),
                 ],
               ),
-            const SizedBox(height: 13),
             STextFormField(
               hintText: "Edad",
               controller: edadController,
@@ -117,7 +116,7 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
                   caloriasdef = calorias - 300;
             });
             }           
-              }
+              },
               ),
             
             if (calorias < 5000 && calorias > 500  )
