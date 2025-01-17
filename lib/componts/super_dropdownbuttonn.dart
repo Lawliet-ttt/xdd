@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 class SDropdownButton extends StatefulWidget {
-  final String title;
+  //final String title;
   final List<String> items;
   final Function(String?)? onChanged;
   final String hint;
@@ -9,7 +9,7 @@ class SDropdownButton extends StatefulWidget {
   final Color ? foregroundColor;
   final IconData? icon;
   const SDropdownButton({super.key,
-  required this.title,
+  //required this.title,
   required this.items,
   this.onChanged,
   this.hint = 'Selecciona una opcion',

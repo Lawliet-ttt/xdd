@@ -52,7 +52,7 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
               children: [
               const SizedBox(height: 5),
             SDropdownButton(
-              title: "1",
+              //title: "1",
               items: ['Hombre','Mujer'],
               hint: "Selecciona un genero",
               icon: Icons.arrow_drop_down,
@@ -81,7 +81,7 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
               onSaved: (value) => providerController.updatealtura(value ?? '')
             ),
             SDropdownButton(
-              title: "2",
+              //title: "2",
               items: ['Muy leve','Leve','Moderado','Activo','Muy Activo'],
               hint: "Selecciona tu actividad",
               icon: Icons.arrow_drop_down,

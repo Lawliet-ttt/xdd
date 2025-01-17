@@ -1,4 +1,5 @@
 import 'package:app/componts/mi_drawer.dart';
+import 'package:app/componts/super_dropdownbuttonn.dart';
 import 'package:app/componts/super_elevatedbuttonn.dart';
 import 'package:app/componts/super_textformfieldd.dart';
 import 'package:app/providers/controllers_providers.dart';
@@ -52,27 +53,16 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
               children: [
               
               const SizedBox(height: 5),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  
-                  SElevatedButton(
-                    text: "Hombre",
-                    //widthFactor: ancho*0.41,
-                   // widthHeight: alto*0.08,
-                    onPressed: (){
-
-                  }
-                  ),
-                  SElevatedButton(
-                    text: "Mujer",
-                    //widthFactor: ancho*0.43,
-                    //widthHeight: alto*0.08,
-                    onPressed: (){
-                  }
-                  ),
-                ],
-              ),
+              SDropdownButton(
+                items: ['Hombre', 'Mujer'],
+                hint: "Selecciona un genero",
+                icon: Icons.arrow_drop_down,
+                onChanged: (String ? newValue) {
+                  setState(() {
+                  });
+                }
+                )
+              ,
               STextFormField(
                 hintText: "edad",
                 controller: edadController,
