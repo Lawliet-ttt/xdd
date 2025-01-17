@@ -24,6 +24,8 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
 
   int calorias = 0;
   int caloriasdef = 0;
+  int valorgenero = 0;
+  double valoractividad = 0;
    
   @override 
 
@@ -36,9 +38,7 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
     
     edadController.text = providerController.edad;
     pesoController.text = providerController.peso;
-    alturaController.text = providerController.altura;
-    actividadController.text = providerController.actividad;
-    
+    alturaController.text = providerController.altura;    
     return Scaffold(
       appBar: AppBar(
         title: const Text("Calorias"),
@@ -57,7 +57,14 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
               hint: "Selecciona un genero",
               icon: Icons.arrow_drop_down,
               onChanged: (String? newValue) {
+                if (newValue == 'Hombre'){
+                valorgenero = 5;
+              } else  if (newValue == 'Mujer'){
+                valorgenero = -161;
+              }
             setState(() {
+              Provider.of<ControllersProviders>(context,listen: false).updategenero(valorgenero);
+              
             });
           },
               ),
@@ -82,11 +89,23 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
             ),
             SDropdownButton(
               //title: "2",
-              items: ['Muy leve','Leve','Moderado','Activo','Muy Activo'],
+              items: ['Sedentario ','Actividad ligera','Actividad moderada','Actividad intensa','Actividad muy intensa'],
               hint: "Selecciona tu actividad",
               icon: Icons.arrow_drop_down,
               onChanged: (String? newValue){
+                if (newValue == 'Sedentario'){
+                  valoractividad = 1.2;
+                } else if(newValue == 'Actividad ligera'){
+                  valoractividad = 1.375;
+                } else if(newValue == 'Actividad moderada'){
+                  valoractividad = 1.55;
+                } else if(newValue =='Actividad intensa'){
+                  valoractividad = 1.725;
+                } else if(newValue == 'Actividad muy intensa'){
+                  valoractividad = 1.9;
+                }
                 setState(() {
+                  Provider.of<ControllersProviders>(context,listen: false). updateactividad(valoractividad);
                 });
               }
               ),

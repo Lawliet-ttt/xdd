@@ -36,7 +36,7 @@ class _PantallaCalculadoraGrasaAntiguoState extends State<PantallaCalculadoraGra
     edadController.text = providerController.edad;
     pesoController.text = providerController.peso;
     alturaController.text = providerController.altura;
-    actividadController.text = providerController.actividad;
+    //actividadController.text = providerController.actividad;
     cuelloController.text = providerController.cuello;
 
     return Scaffold(
