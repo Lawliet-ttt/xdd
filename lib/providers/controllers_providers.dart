@@ -6,6 +6,7 @@ class ControllersProviders extends ChangeNotifier{
   String _actividad = "";
   String _cuello = "";
   String _cintura = "";
+  int _genero = 1;
 
   String get edad => _edad;
   String get peso => _peso;
@@ -13,6 +14,7 @@ class ControllersProviders extends ChangeNotifier{
   String get actividad => _actividad;
   String get cuello => _cuello;
   String get cintura => _cintura;
+  int get genero => _genero;
 
   void updateEdad(String value){
     _edad = value;
@@ -38,14 +40,19 @@ class ControllersProviders extends ChangeNotifier{
     _cintura = value;
     notifyListeners();
   }
+  void updategenero(int value){
+    _genero = value;
+    notifyListeners();
+  }
 
   int calcularCalorias(){
     double peso = double.tryParse(_peso) ?? 0;
     double edad = double.tryParse(_edad) ?? 0;
     double altura = double.tryParse(_altura) ?? 0;
+    int genero =  _genero;
     //double actividad = double.tryParse(_actividad) ?? 0;
     
-    double calorias = ( (10 * peso) + (6.25 * altura) - (5 * edad) + 5) * 1.55;
+    double calorias = ( (10 * peso) + (6.25 * altura) - (5 * edad) + genero) * 1.55;
     int calor  = calorias.round();
 
     return calor;

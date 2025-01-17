@@ -28,7 +28,7 @@
           style: ElevatedButton.styleFrom(
             backgroundColor: backgroundColor ?? Colors.blue,
               foregroundColor: foregroundColor ?? Colors.white,
-            minimumSize: Size(buttonWidth,buttonHeight),
+            minimumSize: Size(buttonWidth,buttonHeight),  
             shape:RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
 

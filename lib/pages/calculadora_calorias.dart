@@ -1,4 +1,5 @@
 import 'package:app/componts/mi_drawer.dart';
+import 'package:app/componts/super_dropdownbuttonn.dart';
 import 'package:app/componts/super_elevatedbuttonn.dart';
 import 'package:app/componts/super_textformfieldd.dart';
 import 'package:app/providers/controllers_providers.dart';
@@ -50,35 +51,15 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
             child: Column(
               children: [
               const SizedBox(height: 5),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SElevatedButton(
-                    text: "Hombre",
-                    //widthFactor:ancho * 0.43 ,
-                    //widthHeight: alto * 0.08,
-                    /*
-                    isSelected: true,
-                    isSelectable: seleccionarGenero == "Mujer",
-                    */
-                    onPressed: (){
-                    //seleccionarGenero = "Mujer";
-                  }
-                  ),
-                  SElevatedButton(
-                    text: "Mujer",
-                    //widthFactor:ancho * 0.43 ,
-                    //widthHeight: alto * 0.08,
-                  
-                    /*
-                    isSelected: true,
-                    isSelectable: seleccionarGenero == "Mujer",
-                    */
-                    onPressed: (){
-                    //seleccionarGenero = "Mujer";
-                  }
-                  ),
-                ],
+            SDropdownButton(
+              title: "1",
+              items: ['Hombre','Mujer'],
+              hint: "Selecciona un genero",
+              icon: Icons.arrow_drop_down,
+              onChanged: (String? newValue) {
+            setState(() {
+            });
+          },
               ),
             STextFormField(
               hintText: "Edad",
@@ -99,12 +80,16 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
               validator: (value) => providerValidator.alturavalidator(value,"Ingrese su altura"),
               onSaved: (value) => providerController.updatealtura(value ?? '')
             ),
-            STextFormField(
-              hintText: 'Nivel de actvidad',
-              controller: actividadController,
-              validator: (value) => providerValidator.actividadvalidator(value, "valide su actividad"),
-              onSaved: (value) => providerController.updateactividad(value ?? '')
-            ),
+            SDropdownButton(
+              title: "2",
+              items: ['Muy leve','Leve','Moderado','Activo','Muy Activo'],
+              hint: "Selecciona tu actividad",
+              icon: Icons.arrow_drop_down,
+              onChanged: (String? newValue){
+                setState(() {
+                });
+              }
+              ),
             
             SElevatedButton(
               text: "Calcular",
