@@ -16,30 +16,34 @@ class PantallaCalculadoraGrasa extends StatefulWidget {
 }
 
 class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
-  String seleccionarGenero = "";
   
   final edadController = TextEditingController();
   final pesoController = TextEditingController();
   final alturaController = TextEditingController();
   final actividadController = TextEditingController();
   final cuelloController = TextEditingController();
+  final cinturaController = TextEditingController();
 
-  final _formKeys = GlobalKey<FormState>();
   final providerValidator = ValidatorsProviders();
-   
-  @override
-  Widget build(BuildContext context) {
-    //double ancho = MediaQuery.of(context).size.width;
-    //double alto = MediaQuery.of(context).size.height;
+  final _formKeys = GlobalKey<FormState>();
 
-    final providerController = Provider.of<ControllersProviders>(context);
-    
+  String seleccionarGenero = "";
+  int valorgenero = 1;
+  @override
+  void initState(){
+    super.initState();
+    final  providerController = Provider.of<ControllersProviders>(context,listen: false);
     edadController.text = providerController.edad;
     pesoController.text = providerController.peso;
     alturaController.text = providerController.altura;
-    //actividadController.text = providerController.actividad;
+    cinturaController.text = providerController.cintura;
     cuelloController.text = providerController.cuello;
+  }
+  @override
+  Widget build(BuildContext context) {
 
+    final providerController = Provider.of<ControllersProviders>(context);
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text("Porcentaje de Grasa"),
@@ -59,6 +63,7 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
                 icon: Icons.arrow_drop_down,
                 onChanged: (String ? newValue) {
                   setState(() {
+              Provider.of<ControllersProviders>(context,listen: false).updategenero(valorgenero);
                   });
                 }
                 )
@@ -90,8 +95,9 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
             ),
             STextFormField(
               hintText: "Cintura",
-              //controller: cinturaController
-              //validotor : (value)=> providerValidator.cinturaalidator(value,"Valide perimetro de la cintura"),
+              controller: cinturaController,
+              validator : (value)=> providerValidator.cinturavalidator(value,"Valide perimetro de la cintura"),
+              onSaved: (value) =>providerController.updatecintura(value ?? ''),
             ),
             SElevatedButton(
               text: "Calcular",

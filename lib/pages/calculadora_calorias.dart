@@ -14,14 +14,15 @@ class PantallaCalculadoraCalorias extends StatefulWidget {
 }
 
 class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCalorias> {
-  String seleccionarGenero = "";
   final edadController = TextEditingController();
   final pesoController = TextEditingController();
   final alturaController = TextEditingController();
   final actividadController = TextEditingController();
+
   final providerValidator = ValidatorsProviders();
   final _formkey = GlobalKey<FormState>();
 
+  String seleccionarGenero = "";
   int calorias = 0;
   int caloriasdef = 0;
   int caloriasvol = 0;

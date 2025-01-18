@@ -57,5 +57,18 @@ class  ValidatorsProviders extends ChangeNotifier{
     }
   }
 
+  cinturavalidator(String value, String message){
+    if(value.isEmpty){
+      return message;
+    }else {
+      double? cintura = double.tryParse(value);
+      if(cintura == null){
+        return "Por favor ingrese un número válido";
+      }else if ( cintura < 40 || cintura > 350){
+        return "El cuello debe estar entre 25 y 70 cm";
+      }
+    }
+  }
+
   }
   
