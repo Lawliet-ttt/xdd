@@ -20,32 +20,34 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
   final alturaController = TextEditingController();
   final actividadController = TextEditingController();
   final providerValidator = ValidatorsProviders();
-  final formkey = GlobalKey<FormState>();
+  final _formkey = GlobalKey<FormState>();
 
   int calorias = 0;
   int caloriasdef = 0;
+  int caloriasvol = 0;
   int valorgenero = 0;
   double valoractividad = 0;
    
-  @override 
-
+  @override
+  void initState() {
+    super.initState();
+    final providerController = Provider.of<ControllersProviders>(context, listen: false);
+    edadController.text = providerController.edad;
+    pesoController.text = providerController.peso;
+    alturaController.text = providerController.altura;
+  }
+  @override
   Widget build(BuildContext context) {
     
     final providerController = Provider.of<ControllersProviders>(context);
 
-    //double ancho = MediaQuery.of(context).size.width;
-    //double alto = MediaQuery.of(context).size.height;
-    
-    edadController.text = providerController.edad;
-    pesoController.text = providerController.peso;
-    alturaController.text = providerController.altura;    
     return Scaffold(
       appBar: AppBar(
         title: const Text("Calorias"),
       ),
       drawer: MiDrawer(),
       body: Form(
-        key: formkey,
+        key: _formkey,
         child: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -113,11 +115,12 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
             SElevatedButton(
               text: "Calcular",
               onPressed: (){
-                if (formkey.currentState!.validate()){
-                  formkey.currentState?.save();
+                if (_formkey.currentState!.validate()){
+                  _formkey.currentState?.save();
                   setState(() {
                   calorias = providerController.calcularCalorias();
                   caloriasdef = calorias - 300;
+                  caloriasvol = calorias + 300;
             });
             }           
               },
@@ -125,6 +128,7 @@ class _PantallaCalculadoraCaloriasState extends State<PantallaCalculadoraCaloria
             
             if (calorias < 5000 && calorias > 500  )
                 Text(
+                  "Superavit son: $caloriasvol\n"
                   "Las calorías calculadas son: $calorias\n"
                   "Deficit son: $caloriasdef\n" ,
                   textAlign: TextAlign.center,

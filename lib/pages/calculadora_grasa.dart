@@ -24,7 +24,7 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
   final actividadController = TextEditingController();
   final cuelloController = TextEditingController();
 
-  final formKeys = GlobalKey<FormState>();
+  final _formKeys = GlobalKey<FormState>();
   final providerValidator = ValidatorsProviders();
    
   @override
@@ -46,7 +46,7 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
       ),
       drawer: MiDrawer(),
       body: Form(
-        key: formKeys,
+        key: _formKeys,
         child: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -96,8 +96,8 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
             SElevatedButton(
               text: "Calcular",
               onPressed: (){
-              if(formKeys.currentState!.validate()){
-                formKeys.currentState?.save();
+              if(_formKeys.currentState!.validate()){
+                _formKeys.currentState?.save();
               }
             }
             ),

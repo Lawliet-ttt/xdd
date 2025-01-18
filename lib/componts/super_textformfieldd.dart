@@ -26,9 +26,15 @@ class STextFormField extends StatelessWidget {
         controller: controller,
         validator: validator,
         onSaved: onSaved,
+        style: TextStyle(
+          fontWeight: FontWeight.bold
+        ),
         //onChanged: onChanged,
         decoration: InputDecoration(
           hintText: hintText,
+          hintStyle: TextStyle(
+            fontWeight: FontWeight.normal
+          ),
           label: Text('Ingresa tu $hintText'),
           border: InputBorder.none,
           enabledBorder: OutlineInputBorder(
