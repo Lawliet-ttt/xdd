@@ -75,6 +75,18 @@ class  ValidatorsProviders extends ChangeNotifier{
       }
     }
   }
+  caderavalidator(String value, String message){
+    if(value.isEmpty){
+      return message;
+    }else {
+      double? cadera = double.tryParse(value);
+      if(cadera == null){
+        return "Por favor ingrese un número válido";
+      }else if ( cadera < 70 || cadera > 170){
+        return "La cadera debe estar entre 70 y 170 cm";
+      }
+    }
+  }
 
   }
   

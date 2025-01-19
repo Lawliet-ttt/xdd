@@ -17,8 +17,6 @@ class PantallaCalculadoraGrasa extends StatefulWidget {
 
 class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
   
-  final edadController = TextEditingController();
-  final pesoController = TextEditingController();
   final alturaController = TextEditingController();
   final actividadController = TextEditingController();
   final cuelloController = TextEditingController();
@@ -29,15 +27,13 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
   final _formKeys = GlobalKey<FormState>();
 
   String seleccionarGenero = "";
-  int valorgenero = 0;
+  int valorgenero = 1;
   double grasa = 0;
 
   @override
   void initState(){
     super.initState();
     final  providerController = Provider.of<ControllersProviders>(context,listen: false);
-    edadController.text = providerController.edad;
-    pesoController.text = providerController.peso;
     alturaController.text = providerController.altura;
     cinturaController.text = providerController.cintura;
     cuelloController.text = providerController.cuello;
@@ -75,27 +71,29 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
               Provider.of<ControllersProviders>(context,listen: false).updategenero(valorgenero);
                   });
                 }
-                )
-              ,
-              STextFormField(
-                hintText: "edad",
-                controller: edadController,
-                validator: (value)=>providerValidator.edadvalidator(value, "Valide su edad"),
-                onSaved: (value) => providerController.updateEdad(value ?? '')
-              ),
+                ),
             STextFormField(
               hintText: "altura",
               controller: alturaController,
               validator: (value) => providerValidator.alturavalidator(value,"valide su altura"),
               onSaved: (value) =>providerController.updatealtura(value ?? '') ,
             ),
+            if(valorgenero == 1)...[
             STextFormField(
-              hintText: "peso",
-              controller: pesoController,
-              validator: (value) => providerValidator.pesovalidator(value, "valide su peso"),
-              onSaved: (value) =>providerController.updatepeso(value ?? '') ,
+              hintText: "cuello",
+              controller: cuelloController,
+              validator : (value)=> providerValidator.cuellovalidator(value,"Valide perimetro del cuello"),
+              onSaved: (value) =>providerController.updatecuello(value ?? '') ,
             ),
-            
+            STextFormField(
+              hintText: "Cintura",
+              controller: cinturaController,
+              validator : (value)=> providerValidator.cinturavalidator(value,"Valide perimetro de la cintura"),
+              onSaved: (value) =>providerController.updatecintura(value ?? ''),
+            ),
+
+            ],
+            if(valorgenero == 2)...[
             STextFormField(
               hintText: "cuello",
               controller: cuelloController,
@@ -111,8 +109,10 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
             STextFormField(
               hintText: "cadera",
               controller: caderaController,
+              validator: (value) => providerValidator.caderavalidator(value, "Valide el perimetro de la cadera"),
               onSaved: (value) => providerController.updatecadera(value ?? ''),
             ),
+            ],
             SElevatedButton(
               text: "Calcular",
               onPressed: (){
