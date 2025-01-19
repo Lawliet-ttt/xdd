@@ -23,6 +23,7 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
   final actividadController = TextEditingController();
   final cuelloController = TextEditingController();
   final cinturaController = TextEditingController();
+  final caderaController = TextEditingController();
 
   final providerValidator = ValidatorsProviders();
   final _formKeys = GlobalKey<FormState>();
@@ -40,6 +41,7 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
     alturaController.text = providerController.altura;
     cinturaController.text = providerController.cintura;
     cuelloController.text = providerController.cuello;
+    caderaController.text = providerController.cadera;
   }
   @override
   Widget build(BuildContext context) {
@@ -105,6 +107,11 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
               controller: cinturaController,
               validator : (value)=> providerValidator.cinturavalidator(value,"Valide perimetro de la cintura"),
               onSaved: (value) =>providerController.updatecintura(value ?? ''),
+            ),
+            STextFormField(
+              hintText: "cadera",
+              controller: caderaController,
+              onSaved: (value) => providerController.updatecadera(value ?? ''),
             ),
             SElevatedButton(
               text: "Calcular",

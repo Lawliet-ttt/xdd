@@ -6,6 +6,12 @@ class  ValidatorsProviders extends ChangeNotifier{
     if (value.isEmpty){
       return "Ingrese su edad";
     }else{
+      double? edad = double.tryParse(value);
+      if(edad == null){
+        return "Por favor ingrese un número válido para su edad";
+      }else if(edad < 1 || edad > 140){
+        return "La edad debe estar entre 1 y 140";
+      }
       return null;
     }
   }
@@ -17,7 +23,7 @@ class  ValidatorsProviders extends ChangeNotifier{
       double? peso = double.tryParse(value);
       if(peso == null){
         return "Por favor ingrese un número válido para el peso";
-      }else if(peso<35 || peso>260){
+      }else if(peso < 35 || peso > 260){
         return "El peso debe estar entre 35 y 260";
       }
     }
@@ -30,7 +36,7 @@ class  ValidatorsProviders extends ChangeNotifier{
       double? altura = double.tryParse(value);
       if(altura == null){
         return "Por favor ingrese un número válido";
-      }else if(altura<130 || altura>260){
+      }else if(altura < 130 || altura > 260){
         return "La altura debe estar entre 130 y 260 cm";
       }
     }
