@@ -28,7 +28,9 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
   final _formKeys = GlobalKey<FormState>();
 
   String seleccionarGenero = "";
-  int valorgenero = 1;
+  int valorgenero = 0;
+  double grasa = 0;
+
   @override
   void initState(){
     super.initState();
@@ -62,6 +64,11 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
                 hint: "Selecciona un genero",
                 icon: Icons.arrow_drop_down,
                 onChanged: (String ? newValue) {
+                  if(newValue =='Hombre'){
+                    valorgenero = 1;
+                  }else if(newValue=='Mujer'){
+                    valorgenero = 2;
+                  }
                   setState(() {
               Provider.of<ControllersProviders>(context,listen: false).updategenero(valorgenero);
                   });
@@ -104,9 +111,14 @@ class _PantallaCalculadoraGrasaState extends State<PantallaCalculadoraGrasa> {
               onPressed: (){
               if(_formKeys.currentState!.validate()){
                 _formKeys.currentState?.save();
+                setState(() {
+                  grasa = providerController.calcularGrasaCorporal();
+                });
               }
             }
             ),
+            if(grasa>1 && grasa<100)
+              Text("Su porcentaje de grasa es $grasa")
             ],
             ),
           ),
